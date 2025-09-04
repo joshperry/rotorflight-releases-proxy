@@ -1,4 +1,8 @@
-# GitHub Releases proxy
+# Rotorflight GitHub Releases proxy
+
+Forked from kdrag0n/github-releases-proxy and specialized to proxy requests for rotorflight firmware release assets.
+
+### Original description:
 
 This is a simple Cloudflare Workers script that proxies requests to preconfigured assets hosted on GitHub Releases. This worker makes it possible to download GitHub Releases assets directly from web frontends using CORS, without any other intermediaries.
 

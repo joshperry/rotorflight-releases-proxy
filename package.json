@@ -1,15 +1,20 @@
 {
-  "name": "github-releases-proxy",
+  "name": "rotorflight-releases-proxy",
   "version": "1.0.0",
-  "description": "GitHub Releases asset proxy for Cloudflare Workers",
+  "description": "Rotorflight GitHub Releases asset proxy for Cloudflare Workers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write '**/*.{js,css,json,md}'"
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "format": "prettier --write '**/*.{js,css,json,md}'",
+    "postinstall": "nixpatchbins || true"
   },
-  "author": "Danny Lin <danny@kdrag0n.dev>",
+  "type": "module",
+  "author": "Josh Perry",
   "license": "MIT",
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "@cloudflare/vitest-pool-workers": "^0.8.70",
+    "prettier": "^1.18.2",
+    "vitest": "~3.2.4"
   }
 }

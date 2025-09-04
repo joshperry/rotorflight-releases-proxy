@@ -1,0 +1,5 @@
+{
+  "name": "rotorflight-releases-proxy",
+  "main": "src/index.js",
+  "compatibility_date": "2025-09-02",
+}
