@@ -17,9 +17,6 @@ importers:
       vitest:
         specifier: ~3.2.4
         version: 3.2.4
-      wrangler:
-        specifier: ^4.34.0
-        version: 4.34.0
 
 packages:
 
