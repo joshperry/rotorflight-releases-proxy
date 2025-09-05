@@ -37,6 +37,18 @@ describe('Rotorflight asset proxy', () => {
     expect(response.headers.get('access-control-allow-origin')).toBe(goodOrigin)
   });
 
+  it('responds with upstream content without slash in release tag', async () => {
+    const content = 'firmware file'
+    fetchMock
+      .get("https://github.com")
+      .intercept({ path: "/rotorflight/rotorflight-firmware/releases/download/release-4.5.0-RC4/rotorflight_4.5.0-RC4_STM32F7X2.hex" })
+      .reply(200, content);
+
+    const response = await goodFetch({}, goodUrl.replace('release/4.5.0-RC4', 'release-4.5.0-RC4'))
+
+    expect(response.status).toBe(200);
+    expect(await response.text()).toBe(content);
+  });
   it('responds with 403 when no origin header', async () => {
     const response = await SELF.fetch(goodUrl)
 

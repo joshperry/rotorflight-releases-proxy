@@ -44,9 +44,9 @@ export default {
         throw new RequestError(403, 'Origin not allowed')
       }
 
-      // rotorflight-firmware uses a / in the release tags, like release/4.5.1
+      // use a regex because / can be in the tag names, like release/4.5.1
       let reqUrl = new URL(request.url)
-      let reqParts = reqUrl.pathname.match(/^\/[^\/]+\/[^\/]+\/releases\/download\/(?<tag>.+\/.+)\/(?<file>.+)$/)
+      let reqParts = reqUrl.pathname.match(/^\/[^\/]+\/[^\/]+\/releases\/download\/(?<tag>.+)\/(?<file>[^\/]+)$/)
       // null if no regex match
       if (!reqParts) {
         throw new RequestError(404, 'Invalid request URL')
