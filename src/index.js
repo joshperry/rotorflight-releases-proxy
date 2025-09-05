@@ -34,7 +34,7 @@ export default {
     }
 
     function parseRequest(request) {
-      if (request.method !== 'GET') {
+      if (!['GET', 'HEAD'].includes(request.method)) {
         throw new RequestError(405, 'Invalid request method')
       }
 
@@ -74,7 +74,9 @@ export default {
       }
       if (originResp === undefined) {
         // Fetch from origin
-        originResp = await fetch(url)
+        originResp = await fetch(url, {
+          method: request.method,
+        })
 
         if (USE_CACHE) {
           // Tee the stream for both the client and caching readers to use

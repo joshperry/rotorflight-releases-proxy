@@ -49,6 +49,20 @@ describe('Rotorflight asset proxy', () => {
     expect(response.status).toBe(200);
     expect(await response.text()).toBe(content);
   });
+
+  it('proxies HEAD requests', async () => {
+    fetchMock
+      .get("https://github.com")
+      .intercept({ method: 'HEAD', path: "/rotorflight/rotorflight-firmware/releases/download/release/4.5.0-RC4/rotorflight_4.5.0-RC4_STM32F7X2.hex" })
+      .reply(200);
+
+    const response = await goodFetch({
+      method: 'HEAD',
+    })
+
+    expect(response.status).toBe(200);
+  });
+
   it('responds with 403 when no origin header', async () => {
     const response = await SELF.fetch(goodUrl)
 
